@@ -1,0 +1,15 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+.terraform.lock.hcl.bak
+
+# Node
+node_modules/
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.vscode/
