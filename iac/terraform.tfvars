@@ -1,4 +1,4 @@
-# En Windows (Docker Desktop) descomentar esta linea:
+# En Windows (Docker Desktop):
 # docker_host = "npipe:////.//pipe//docker_engine"
 
 ambientes = {
