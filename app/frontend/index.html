@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend ${ambiente}</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    h1 { color: #333; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 4px; }
+    .ok { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Frontend - ambiente ${ambiente}</h1>
+  <p>API: <code>${api_url}</code></p>
+
+  <h3>Respuesta del backend</h3>
+  <pre id="api">Cargando...</pre>
+
+  <h3>Conexion a la base de datos</h3>
+  <pre id="bd">Cargando...</pre>
+
+  <script>
+    var API_URL = "${api_url}";
+
+    function mostrar(id, url) {
+      var el = document.getElementById(id);
+      fetch(url)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          el.className = data.ok === false ? "error" : "ok";
+          el.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(function (err) {
+          el.className = "error";
+          el.textContent = "No se pudo conectar: " + err;
+        });
+    }
+
+    mostrar("api", API_URL + "/");
+    mostrar("bd", API_URL + "/db");
+  </script>
+</body>
+</html>
